@@ -28,16 +28,26 @@ body {
   /* justify-content: space-evenly; */
 }
 .gridboard {
-  width: 500px;
+  /* comment by danli huang */
+  /* width: 550px; */
   /* background-color: #f5f2f2; */
-  height: 500px;
+  /* comment by danli huang */
+  /* height: 550px; */
+
   /* display: flex; */
   /* flex-direction: row; */
   /* flex-wrap: wrap;  */
   /* position: relative; */
   float: left;
   font-size: 0px;
-  margin: auto 50px auto auto;
+  margin: auto;
+  /* 5 lines below added by danli huang*/
+  display:grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width:500px;
+  height:500px;
+
 }
 .gridboard > .smallbox {
   background-color: #b10dc9;
@@ -49,53 +59,98 @@ body {
   padding: 0px 0px 0px 0px;
   font-size: 20px;
   font-weight: bold;
-  /* overflow: visible; */
+/* added by danli huang */
+  overflow:visible;
 }
+/* below modified by danli haung */
+.gridboard>div{
+   position:relative;
 
+}
 #img_ladder1 {
+  /* comment by danli huang */
+  /*
   position: relative;
   top: -450px;
   left: 240px;
   width: 110px;
   height: 110px;
+  */
+  top:35px;
+  left:35px;
+  z-index: 999;
+  width:110px;
+  height:110px;
+  position:absolute;
+
 }
 
 #img_ladder2 {
-  position: relative;
-  top: -170px;
-  left: 250px;
-  width: 130px;
-  height: 130px;
+  top:35px;
+  left:35px;
+  z-index: 999;
+  width:120px;
+  height:120px;
+  position:absolute;
 }
 #img_snake1 {
-  position: relative;
-  top: -340px;
-  left: -200px;
+
+  top:45px;
+  left:35px;
+  z-index: 999;
+  position:absolute;
   width: 120px;
   height: 80px;
 }
 #img_snake2 {
-  position: relative;
-  top: -590px;
-  left: 15px;
-  width: 310px;
-  height: 160px;
+
+  top:30px;
+  left:25px;
+  z-index: 999;
+  position:absolute;
+  width: 260px;
+  height: 140px;
 }
 #img_snake3 {
-  position: relative;
-  top: -390px;
-  left: -170px;
-  width: 130px;
-  height: 200px;
+
+  top:55px;
+  left:35px;
+  z-index: 999;
+ position:absolute;
+
+
+  width: 110px;
+  height: 180px;
 }
 
 #img_flag {
-  position: relative;
-  top: -820px;
-  left: 420px;
-  width: 70px;
-  height: 70px;
+
+  top:35px;
+  left:5px;
+  z-index: 999;
+  position:absolute;
+
+  width: 50px;
+  height: 50px;
 }
+#img_avatar_body1
+{
+  top:0px;
+  width:0px;
+  position:absolute;
+  width: 50px;
+  height:50px;
+}
+#img_avatar_body2{
+  top:50px;
+  left:50px;
+  width: 45px;
+  height:45px;
+
+position:absolute;
+
+}
+
 
 .control_panel {
   width: 260px;
@@ -169,18 +224,4 @@ body {
     float: left;
     margin-right: 25px;
   }
-}
-
-/* Weiguang Player1 class */
-#player1 {
-  position: relative;
-  width: 40px;
-  height: 40px;
-}
-#player2 {
-  position: relative;
-
-  width: 40px;
-  height: 40px;
-  left: 2px;
 }
