@@ -82,7 +82,7 @@ window.onload = function () {
         buttonElement.innerText = "Play again";
         buttonElement.onclick = window.location.reload(); // need to test again, not working as expected;
       } else {
-        player1NewLocation = player1PreLocation - randomNumber;
+        player1NewLocation = 25 - (randomNumber - (25 - player1PreLocation));
         $("#player1").appendTo(`#div${player1NewLocation}`);
         player1PreLocation = player1NewLocation;
       }
@@ -101,7 +101,7 @@ window.onload = function () {
         $("#player2").appendTo(`#div${player2NewLocation}`);
         player2PreLocation = player2NewLocation;
       }
-    }, 2000);
+    }, 1500);
   };
 };
 
