@@ -11,11 +11,10 @@ window.onload = function () {
   $(".smallbox:odd").css("background", "#CFA175");
   // Weiguang setup player using jquery; should be ale to be achieved using js as well.
   var player1Img = document.createElement("img");
-  player1Img.src = "imgs/avatar1.png";
+  player1Img.src = "imgs/avatar_body1.png";
 
   let player2Img = document.createElement("img");
-  player2Img.src = "imgs/avatar2.png";
-
+  player2Img.src = "imgs/avatar_body2.png";
   let gridboard = document.getElementById("gridboard");
 
   gridboard.appendChild(player1Img);
@@ -26,8 +25,8 @@ window.onload = function () {
 
   $("#player1").appendTo("#div1");
   $("#player2").appendTo("#div1");
-  let player1PreLocation = 1;
-  let player2PreLocation = 1;
+  let player1PreLocation = 0;
+  let player2PreLocation = 0;
   // Weiguang
 
   var buttonElement = document.getElementById("rolldice_button");
