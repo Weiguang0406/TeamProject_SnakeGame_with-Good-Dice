@@ -10,31 +10,17 @@ window.onload = function () {
   $(".smallbox:even").css("background", "#2C3D50");
   $(".smallbox:odd").css("background", "#CFA175");
   // Weiguang: setup player using jquery; should be ale to be achieved using js as well.
-  // var player1Img = document.createElement("img");
-  // player1Img.src = "imgs/avatar_body1.png";
-
-  // let player2Img = document.createElement("img");
-  // player2Img.src = "imgs/avatar_body2.png";
-  // let gridboard = document.getElementById("gridboard");
-
-  // gridboard.appendChild(player1Img);
-  // gridboard.appendChild(player2Img);
-
-  // player1Img.setAttribute("id", "player1");
-  // player2Img.setAttribute("id", "player2");
-
   // Temporarily comment out above code while testing pre-placed player in div1;
 
-  $("#player1").appendTo("#div1");
-  $("#player2").appendTo("#div1");
-  $("#player1").css("visibility", "hidden"); // players invisible as default;
-  $("#player2").css("visibility", "hidden");
-  // let player1PreLocation = 0;
-  // let player2PreLocation = 0;
+  // $("#player1").appendTo("#div0");
+  // $("#player2").appendTo("#div0");
+  // $("#player1").css("visibility", "hidden"); // players invisible as default;
+  // $("#player2").css("visibility", "hidden");
+
   let moves = 0;
   const locations = { player1: 0, player2: 0 }; // players start from location 0;
   let playerNewLocation;
-  // Weiguang
+  let tempNewLocation; // Added new var to hold the temporary location before checking ladder and snake;
 
   var buttonElement = document.getElementById("rolldice_button");
   const rollDice = () => {
@@ -102,13 +88,20 @@ window.onload = function () {
       };
       // Player moves
       const playerMoves = (player) => {
-        let message = `${player}'s turn`;
-        document.getElementById("message").textContent = message;
-        console.log(player);
+        // let message = `${player}'s turn`;
+        // document.getElementById("message").textContent = message;
         $(`#${player}`).css("visibility", "visible"); // make the user visible before move
-        playerNewLocation = randomNumber + locations[`${player}`];
-        console.log(playerNewLocation);
-        playerNewLocation = snakeOrLadder(playerNewLocation); // check snake or ladders and update the new location accordingly
+        tempNewLocation = randomNumber + locations[`${player}`];
+        playerNewLocation = snakeOrLadder(tempNewLocation); // check snake or ladders and update the new location accordingly
+        playerNewLocation === tempNewLocation
+          ? (document.getElementById(
+              "movingmessage"
+            ).textContent = `${player} rolled dice of ${randomNumber} and moved to ${playerNewLocation}`)
+          : (document.getElementById(
+              "movingmessage"
+            ).textContent = `${player} rolled dice of ${randomNumber},moved to ${tempNewLocation}, then took the ${
+              playerNewLocation > tempNewLocation ? "ladder up" : "snake down"
+            } to ${playerNewLocation}`);
         console.log(playerNewLocation);
         if (playerNewLocation < 25) {
           $(`#${player}`).appendTo(`#div${playerNewLocation}`);
@@ -117,9 +110,9 @@ window.onload = function () {
         } //Player 1: wining condition;
         else if (playerNewLocation === 25) {
           $(`#${player}`).appendTo(`#div${playerNewLocation}`);
-          document.querySelector(
-            ".header"
-          ).innerText = `${player} wins! Game over! Refresh the page to play again`;
+          document.getElementById(
+            "movingmessage"
+          ).textContent = `${player} Won!`;
           buttonElement.innerText = "Play again";
           // reload page in 1s after clicking the the button;
           buttonElement.addEventListener("click", function () {
@@ -128,15 +121,21 @@ window.onload = function () {
             }, 1000);
           });
         } else {
-          playerNewLocation =
-            25 - (randomNumber - (25 - locations[`${player}`]));
-          playerNewLocation = snakeOrLadder(playerNewLocation); // check snake or ladders
+          tempNewLocation = 25 - (randomNumber - (25 - locations[`${player}`]));
+          playerNewLocation = snakeOrLadder(tempNewLocation); // check snake or ladders
+
+          playerNewLocation === tempNewLocation
+            ? (document.getElementById(
+                "movingmessage"
+              ).textContent = `${player} rolled dice of ${randomNumber} and moved back to ${playerNewLocation}`)
+            : (document.getElementById(
+                "movingmessage"
+              ).textContent = `${player} rolled dice of ${randomNumber},moved back to ${tempNewLocation}, then took the ${
+                playerNewLocation > tempNewLocation ? "ladder up" : "snake down"
+              } to ${playerNewLocation}`);
           $(`#${player}`).appendTo(`#div${playerNewLocation}`);
           locations[`${player}`] = playerNewLocation;
         }
-        document.getElementById(
-          "movingmessage"
-        ).textContent = `${player} moved to ${locations[`${player}`]}`;
       };
 
       // const player2Turn = () => {
