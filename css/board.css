@@ -7,6 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #d9dadc;
+padding-top:150px;
 }
 .header {
   margin-top: 30px;
