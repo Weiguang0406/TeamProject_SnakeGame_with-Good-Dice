@@ -9,28 +9,35 @@ $(".smallbox:odd").css("background","#2C3D50");
 window.onload = function () {
   $(".smallbox:even").css("background", "#2C3D50");
   $(".smallbox:odd").css("background", "#CFA175");
-  // Weiguang setup player using jquery; should be ale to be achieved using js as well.
-  var player1Img = document.createElement("img");
-  player1Img.src = "imgs/avatar_body1.png";
+  // Weiguang: setup player using jquery; should be ale to be achieved using js as well.
+  // var player1Img = document.createElement("img");
+  // player1Img.src = "imgs/avatar_body1.png";
 
-  let player2Img = document.createElement("img");
-  player2Img.src = "imgs/avatar_body2.png";
-  let gridboard = document.getElementById("gridboard");
+  // let player2Img = document.createElement("img");
+  // player2Img.src = "imgs/avatar_body2.png";
+  // let gridboard = document.getElementById("gridboard");
 
-  gridboard.appendChild(player1Img);
-  gridboard.appendChild(player2Img);
+  // gridboard.appendChild(player1Img);
+  // gridboard.appendChild(player2Img);
 
-  player1Img.setAttribute("id", "player1");
-  player2Img.setAttribute("id", "player2");
+  // player1Img.setAttribute("id", "player1");
+  // player2Img.setAttribute("id", "player2");
+
+  // Temporarily comment out above code while testing pre-placed player in div1;
 
   $("#player1").appendTo("#div1");
   $("#player2").appendTo("#div1");
+  $("#player1").css("visibility", "hidden");
+  $("#player2").css("visibility", "hidden");
   let player1PreLocation = 0;
   let player2PreLocation = 0;
+  let moves = 0;
   // Weiguang
 
   var buttonElement = document.getElementById("rolldice_button");
   buttonElement.onclick = function () {
+    moves += 1;
+    console.log(moves);
     var randomNumber = Math.trunc(Math.random() * 6 + 1);
     var cubeElement = document.getElementById("cube");
 
@@ -70,37 +77,45 @@ window.onload = function () {
     setTimeout(function () {
       cubeElement.style.animationName = "none";
       // Player moves
-      if (player1NewLocation < 25) {
-        $("#player1").appendTo(`#div${player1NewLocation}`);
-        //Player 1: Test move after the dice animition}
-        player1PreLocation = player1NewLocation;
-      } //Player 1: wining condition;
-      else if (player1NewLocation === 25) {
-        $("#player1").appendTo(`#div${player1NewLocation}`);
-        document.querySelector(".header").innerText =
-          "Player1 wins! Game over! Refresh the page to play again";
-        buttonElement.innerText = "Play again";
-        buttonElement.onclick = window.location.reload(); // need to test again, not working as expected;
-      } else {
-        player1NewLocation = 25 - (randomNumber - (25 - player1PreLocation));
-        $("#player1").appendTo(`#div${player1NewLocation}`);
-        player1PreLocation = player1NewLocation;
-      }
 
-      if (player2NewLocation < 25) {
-        $("#player2").appendTo(`#div${player2NewLocation}`);
-        //Player 2: Test move after the dice animition
-        player2PreLocation = player2NewLocation;
-      } else if (player2NewLocation === 25) {
-        $("#player2").appendTo(`#div${player2NewLocation}`);
-        //Player 1: Test move after the dice animition}
-        document.querySelector(".header").innerText =
-          "Player2 wins! Game over! Refresh the page to play again";
-      } else {
-        player2NewLocation = player2PreLocation - randomNumber;
-        $("#player2").appendTo(`#div${player2NewLocation}`);
-        player2PreLocation = player2NewLocation;
-      }
+      const player1Turn = () => {
+        $("#player1").css("visibility", "visible");
+        if (player1NewLocation < 25) {
+          $("#player1").appendTo(`#div${player1NewLocation}`);
+          //Player 1: Test move after the dice animition}
+          player1PreLocation = player1NewLocation;
+        } //Player 1: wining condition;
+        else if (player1NewLocation === 25) {
+          $("#player1").appendTo(`#div${player1NewLocation}`);
+          document.querySelector(".header").innerText =
+            "Player1 wins! Game over! Refresh the page to play again";
+          buttonElement.innerText = "Play again";
+          // buttonElement.onclick = window.location.reload(); // need to test again, not working as expected;
+        } else {
+          player1NewLocation = 25 - (randomNumber - (25 - player1PreLocation));
+          $("#player1").appendTo(`#div${player1NewLocation}`);
+          player1PreLocation = player1NewLocation;
+        }
+      };
+
+      const player2Turn = () => {
+        $("#player2").css("visibility", "visible");
+        if (player2NewLocation < 25) {
+          $("#player2").appendTo(`#div${player2NewLocation}`);
+          //Player 2: Test move after the dice animition
+          player2PreLocation = player2NewLocation;
+        } else if (player2NewLocation === 25) {
+          $("#player2").appendTo(`#div${player2NewLocation}`);
+          //Player 1: Test move after the dice animition}
+          document.querySelector(".header").innerText =
+            "Player2 wins! Game over! Refresh the page to play again";
+        } else {
+          player2NewLocation = 25 - (randomNumber - (25 - player2PreLocation));
+          $("#player2").appendTo(`#div${player2NewLocation}`);
+          player2PreLocation = player2NewLocation;
+        }
+      };
+      moves % 2 === 1 ? player1Turn() : player2Turn();
     }, 1500);
   };
 };
