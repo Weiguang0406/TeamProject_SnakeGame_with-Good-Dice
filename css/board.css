@@ -142,10 +142,15 @@ body {
   z-index: 1000;
 }
 #message {
+  margin-top: 20px;
   width: 250px;
-  height: 100px;
+  /* height: 100px; */
   text-align: center;
   color: black;
+}
+#movingmessage {
+  margin-top: 10px;
+  text-align: center;
 }
 .control_panel {
   width: 260px;

@@ -134,6 +134,9 @@ window.onload = function () {
           $(`#${player}`).appendTo(`#div${playerNewLocation}`);
           locations[`${player}`] = playerNewLocation;
         }
+        document.getElementById(
+          "movingmessage"
+        ).textContent = `${player} moved to ${locations[`${player}`]}`;
       };
 
       // const player2Turn = () => {
