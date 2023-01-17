@@ -1,3 +1,4 @@
+
 /*
 $(".smallbox:even").css("background","#CFA175");
 
@@ -16,13 +17,26 @@ window.onload = function () {
   // $("#player2").appendTo("#div0");
   // $("#player1").css("visibility", "hidden"); // players invisible as default;
   // $("#player2").css("visibility", "hidden");
-
+ 
   let moves = 0;
   const locations = { player1: 0, player2: 0 }; // players start from location 0;
   let playerNewLocation;
   let tempNewLocation; // Added new var to hold the temporary location before checking ladder and snake;
-
+  let isRolling = false; // Rob: added to prevent double/triple rolls for same player
+// rob: locks out user input with disabled attribute for as long as roll animation preventing multiple turns
   var buttonElement = document.getElementById("rolldice_button");
+  buttonElement.addEventListener("click", function() { 
+    if(isRolling) return;
+    isRolling = true;
+    buttonElement.setAttribute("disabled", true);
+    rollDice();
+    setTimeout(function() {
+        buttonElement.removeAttribute("disabled");
+        isRolling = false;
+    }, 1500);
+  });
+
+
   const rollDice = () => {
     moves += 1;
     console.log(moves);
@@ -118,7 +132,7 @@ window.onload = function () {
           buttonElement.addEventListener("click", function () {
             setTimeout(function () {
               window.location.reload();
-            }, 1000);
+            }, 1000); // perhaps change to 1500 to match others?
           });
         } else {
           tempNewLocation = 25 - (randomNumber - (25 - locations[`${player}`]));
@@ -158,8 +172,7 @@ window.onload = function () {
       moves % 2 === 1 ? playerMoves("player1") : playerMoves("player2");
     }, 1500);
   };
-  // call the rolldile main function;
-  buttonElement.addEventListener("click", rollDice);
+
   // need to add keydown event listner: press the enter or space key to roll the dice;
 };
 
