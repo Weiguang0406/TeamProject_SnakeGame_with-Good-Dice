@@ -126,22 +126,27 @@ body {
 
 /* Weiguang: change id #img_avatar_body1 to player1 */
 #player1 {
-  top: 0px;
-  position: relative;
+  top: 10px;
+  position: absolute;
   width: 50px;
   height: 50px;
   z-index: 1000;
 }
 /* Weiguang: change id #img_avatar_body2 to player2 */
 #player2 {
-  top: 50px;
+  top: 10px;
   left: 50px;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   position: absolute;
   z-index: 1000;
 }
-
+#message {
+  width: 250px;
+  height: 100px;
+  text-align: center;
+  color: black;
+}
 .control_panel {
   width: 260px;
   height: 550px;

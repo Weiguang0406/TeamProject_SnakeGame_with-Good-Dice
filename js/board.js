@@ -27,22 +27,23 @@ window.onload = function () {
 
   $("#player1").appendTo("#div1");
   $("#player2").appendTo("#div1");
-  $("#player1").css("visibility", "hidden");
+  $("#player1").css("visibility", "hidden"); // players invisible as default;
   $("#player2").css("visibility", "hidden");
-  let player1PreLocation = 0;
-  let player2PreLocation = 0;
+  // let player1PreLocation = 0;
+  // let player2PreLocation = 0;
   let moves = 0;
+  const locations = { player1: 0, player2: 0 }; // players start from location 0;
+  let playerNewLocation;
   // Weiguang
 
   var buttonElement = document.getElementById("rolldice_button");
-  buttonElement.onclick = function () {
+  const rollDice = () => {
     moves += 1;
     console.log(moves);
     var randomNumber = Math.trunc(Math.random() * 6 + 1);
     var cubeElement = document.getElementById("cube");
 
-    let player1NewLocation = randomNumber + player1PreLocation;
-    let player2NewLocation = randomNumber + player2PreLocation;
+    // let player2NewLocation = randomNumber + locations.player2;
     console.dir(cubeElement);
     switch (randomNumber) {
       case 1:
@@ -76,48 +77,88 @@ window.onload = function () {
     cubeElement.style["animation-duration"] = "1.5s";
     setTimeout(function () {
       cubeElement.style.animationName = "none";
+
+      // check snake or ladders and return new location:
+      const snakeOrLadder = (playerNewLocation) => {
+        switch (playerNewLocation) {
+          case 13:
+            return 2;
+            break;
+          case 5:
+            return 7;
+            break;
+          case 20:
+            return 12;
+            break;
+          case 18:
+            return 24;
+            break;
+          case 21:
+            return 17;
+            break;
+          default:
+            return playerNewLocation;
+        }
+      };
       // Player moves
-
-      const player1Turn = () => {
-        $("#player1").css("visibility", "visible");
-        if (player1NewLocation < 25) {
-          $("#player1").appendTo(`#div${player1NewLocation}`);
+      const playerMoves = (player) => {
+        let message = `${player}'s turn`;
+        document.getElementById("message").textContent = message;
+        console.log(player);
+        $(`#${player}`).css("visibility", "visible"); // make the user visible before move
+        playerNewLocation = randomNumber + locations[`${player}`];
+        console.log(playerNewLocation);
+        playerNewLocation = snakeOrLadder(playerNewLocation); // check snake or ladders and update the new location accordingly
+        console.log(playerNewLocation);
+        if (playerNewLocation < 25) {
+          $(`#${player}`).appendTo(`#div${playerNewLocation}`);
           //Player 1: Test move after the dice animition}
-          player1PreLocation = player1NewLocation;
+          locations[`${player}`] = playerNewLocation;
         } //Player 1: wining condition;
-        else if (player1NewLocation === 25) {
-          $("#player1").appendTo(`#div${player1NewLocation}`);
-          document.querySelector(".header").innerText =
-            "Player1 wins! Game over! Refresh the page to play again";
+        else if (playerNewLocation === 25) {
+          $(`#${player}`).appendTo(`#div${playerNewLocation}`);
+          document.querySelector(
+            ".header"
+          ).innerText = `${player} wins! Game over! Refresh the page to play again`;
           buttonElement.innerText = "Play again";
-          // buttonElement.onclick = window.location.reload(); // need to test again, not working as expected;
+          // reload page in 1s after clicking the the button;
+          buttonElement.addEventListener("click", function () {
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          });
         } else {
-          player1NewLocation = 25 - (randomNumber - (25 - player1PreLocation));
-          $("#player1").appendTo(`#div${player1NewLocation}`);
-          player1PreLocation = player1NewLocation;
+          playerNewLocation =
+            25 - (randomNumber - (25 - locations[`${player}`]));
+          playerNewLocation = snakeOrLadder(playerNewLocation); // check snake or ladders
+          $(`#${player}`).appendTo(`#div${playerNewLocation}`);
+          locations[`${player}`] = playerNewLocation;
         }
       };
 
-      const player2Turn = () => {
-        $("#player2").css("visibility", "visible");
-        if (player2NewLocation < 25) {
-          $("#player2").appendTo(`#div${player2NewLocation}`);
-          //Player 2: Test move after the dice animition
-          player2PreLocation = player2NewLocation;
-        } else if (player2NewLocation === 25) {
-          $("#player2").appendTo(`#div${player2NewLocation}`);
-          //Player 1: Test move after the dice animition}
-          document.querySelector(".header").innerText =
-            "Player2 wins! Game over! Refresh the page to play again";
-        } else {
-          player2NewLocation = 25 - (randomNumber - (25 - player2PreLocation));
-          $("#player2").appendTo(`#div${player2NewLocation}`);
-          player2PreLocation = player2NewLocation;
-        }
-      };
-      moves % 2 === 1 ? player1Turn() : player2Turn();
+      // const player2Turn = () => {
+      //   $("#player2").css("visibility", "visible");
+      //   if (player2NewLocation < 25) {
+      //     $("#player2").appendTo(`#div${player2NewLocation}`);
+      //     //Player 2: Test move after the dice animition
+      //     player2PreLocation = player2NewLocation;
+      //   } else if (player2NewLocation === 25) {
+      //     $("#player2").appendTo(`#div${player2NewLocation}`);
+      //     //Player 1: Test move after the dice animition}
+      //     document.querySelector(".header").innerText =
+      //       "Player2 wins! Game over! Refresh the page to play again";
+      //   } else {
+      //     player2NewLocation = 25 - (randomNumber - (25 - player2PreLocation));
+      //     $("#player2").appendTo(`#div${player2NewLocation}`);
+      //     player2PreLocation = player2NewLocation;
+      //   }
+      // };
+      moves % 2 === 1 ? playerMoves("player1") : playerMoves("player2");
     }, 1500);
   };
+  // call the rolldile main function;
+  buttonElement.addEventListener("click", rollDice);
+  // need to add keydown event listner: press the enter or space key to roll the dice;
 };
 
 // Weiguang Yang player test code
