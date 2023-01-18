@@ -3,7 +3,7 @@
   padding: 0;
 }
 body {
-  padding-top:20px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -245,6 +245,28 @@ body {
   width: 400px;
   height: auto;
 }
+
+/* indicators */
+
+#player1indicator {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 50px;
+  left: 5px;
+  overflow: visible;
+  visibility: hidden;
+}
+#player2indicator {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 55px;
+  left: 5px;
+  overflow: visible;
+  visibility: hidden;
+}
+
 /* responsive */
 @media only screen and (max-width: 1150px) {
   /* .center(
