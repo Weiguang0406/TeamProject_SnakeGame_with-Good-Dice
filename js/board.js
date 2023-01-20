@@ -21,6 +21,8 @@ window.onload = function () {
   let tempNewLocation; // Added new var to hold the temporary location before checking ladder and snake;
   let previousPlayer = "player1"; // Weiguang: Added new var to hold previous player, for indicator feature;
   let stepSound = new Audio("./audio/move-self.mp3"); // Add step sound file
+  let stairSound = new Audio("./audio/stairSound1.mp3");
+  let snakeSound = new Audio("./audio/snakeSound3.wav");
   let isRolling = false; // Rob: added to prevent double/triple rolls for same player
   // rob: locks out user input with disabled attribute for as long as roll animation preventing multiple turns
   var buttonElement = document.getElementById("rolldice_button");
@@ -97,7 +99,7 @@ window.onload = function () {
             return 24;
             break;
           case 21:
-            return 18; // Was wrongly set 17;
+            return 17; // 18 conflict with Ladder, move back to 17
             break;
           default:
             return playerNewLocation;
@@ -119,16 +121,24 @@ window.onload = function () {
           }
         }
         // FUNCTION: Move backward step by step:
-        const moveSelfBackward = (steps) => {
+        async function moveSelfBackward(steps) {
           for (let i = 1; i <= steps; i++) {
-            console.log("i: ", i);
-            const moveWithSound = () => {
-              $(`#${player}`).appendTo(`#div${locations[`${player}`] - i}`);
-              stepSound.play();
-            };
-            setTimeout(() => moveWithSound(), 500 * i);
+            await sleepNow(500);
+            $(`#${player}`).appendTo(`#div${25 - i}`);
+            stepSound.play();
           }
-        };
+        }
+
+        // const moveSelfBackward = (steps) => {
+        //   for (let i = 1; i <= steps; i++) {
+        //     console.log("i: ", i);
+        //     const moveWithSound = () => {
+        //       $(`#${player}`).appendTo(`#div${25 - i}`);
+        //       stepSound.play();
+        //     };
+        //     setTimeout(() => moveWithSound(), 500 * i);
+        //   }
+        // };
         // Assign values:
         previousPlayer = player; //Assign the player to be previous owner for next click;
         tempNewLocation = randomNumber + locations[`${player}`];
@@ -153,10 +163,16 @@ window.onload = function () {
             .then(() => {
               locations[`${player}`] = playerNewLocation;
             })
+            // Weiguang update: Wait 700ms to run snake or ladder and play sound effect;
             .then(() => {
-              if (playerNewLocation !== tempNewLocation) {
-                $(`#${player}`).appendTo(`#div${playerNewLocation}`);
-              }
+              setTimeout(() => {
+                if (playerNewLocation !== tempNewLocation) {
+                  $(`#${player}`).appendTo(`#div${playerNewLocation}`);
+                  playerNewLocation > tempNewLocation
+                    ? stairSound.play()
+                    : snakeSound.play();
+                }
+              }, 700);
             })
             .catch((err) => {
               throw "Error in if condition1";
@@ -182,22 +198,28 @@ window.onload = function () {
         } else {
           tempNewLocation = 25 - (randomNumber - (25 - locations[`${player}`]));
           playerNewLocation = snakeOrLadder(tempNewLocation); // check snake or ladders
-
+          console.log(tempNewLocation);
+          console.log(playerNewLocation);
           moveSelfForward(`${25 - locations[`${player}`]}`)
             .then(() => {
               locations[`${player}`] = playerNewLocation;
             })
             .then(() => {
-              moveSelfBackward(`${locations[`${player}`] - tempNewLocation}`);
+              moveSelfBackward(`${25 - tempNewLocation}`); // Fixed a logic bug here;
             })
+            // Let palyer got on the temp location first then to use anake or ladder;
             .then(() => {
-              if (playerNewLocation !== tempNewLocation) {
-                $(`#${player}`).appendTo(`#div${playerNewLocation}`);
+              if (playerNewLocation < tempNewLocation) {
+                setTimeout(() => {
+                  $(`#${player}`).appendTo(`#div${playerNewLocation}`);
+                  snakeSound.play();
+                }, 700 * `${25 - tempNewLocation}`);
               }
             })
             .catch((err) => {
               throw "Error calculating location";
             });
+
           // Weiguang comment out: // Displaying detailed message:
           // playerNewLocation === tempNewLocation
           //   ? (document.getElementById(
