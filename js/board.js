@@ -38,6 +38,7 @@ window.onload = function () {
   });
 
   const rollDice = () => {
+
     moves += 1;
     console.log(moves);
     var randomNumber = Math.trunc(Math.random() * 6 + 1);
@@ -48,6 +49,25 @@ window.onload = function () {
     moves % 2 === 1
       ? $(`#player1indicator`).css("visibility", "visible")
       : $(`#player2indicator`).css("visibility", "visible");
+
+    if (moves % 2 === 1) {
+      document.getElementById("img_player2").classList.remove("red_color");
+
+      document.getElementById("img_player1").classList.remove("white_color");
+      document.getElementById("img_player1").classList.add("red_color");
+    }
+    else {
+      document.getElementById("img_player1").classList.remove("red_color");
+
+      document.getElementById("img_player2").classList.remove("white_color");
+      document.getElementById("img_player2").classList.add("red_color");
+    }
+
+
+    /*  let img_player=`img_${player}`;
+      document.getElementById(`${img_player}`).classList.toggle('red_color');
+*/
+
 
     // console.dir(cubeElement);
     switch (randomNumber) {
