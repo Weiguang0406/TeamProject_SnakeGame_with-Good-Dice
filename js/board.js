@@ -18,6 +18,7 @@ window.onload = function () {
   let moves = 0;
   let playerNum = 2; // set default player number;
   let messageBox = document.getElementById("movingmessage");
+  let startingMessageBox = document.getElementById("startingMessage"); // For on screen message
   const locations = { player1: 0, player2: 0 }; // players start from location 0;
   let playerNewLocation;
   let tempNewLocation; // Added new var to hold the temporary location before checking ladder and snake;
@@ -55,8 +56,20 @@ window.onload = function () {
       moves = 3;
       break;
   }
-  $(`#${startPlayer} .indicator`).css("visibility", "visible");
-  messageBox.textContent = `${startPlayer} starts first!`;
+  // slowly show on screen message(the message was hidden as default)
+  setTimeout(() => {
+    startingMessageBox.textContent = `${startPlayer} starts first!`;
+    startingMessageBox.classList.add("showMessage");
+  }, 800);
+  // remove on screen message when mouse click any where of the screen; the event only execute once;
+  function removeMessage() {
+    $(`#startingMessage`).css("transform", "scale(0)");
+    setTimeout(() => {
+      messageBox.textContent = `${startPlayer} roll dice`;
+      $(`#${startPlayer} .indicator`).css("visibility", "visible");
+    }, 1500);
+  }
+  document.addEventListener("click", removeMessage, { once: true });
   //************** */
 
   const rollDice = () => {
