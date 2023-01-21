@@ -16,10 +16,13 @@ window.onload = function () {
   // $("#player2").appendTo("#div0");
 
   let moves = 0;
+  let playerNum = 2; // set default player number;
+  let messageBox = document.getElementById("movingmessage");
   const locations = { player1: 0, player2: 0 }; // players start from location 0;
   let playerNewLocation;
   let tempNewLocation; // Added new var to hold the temporary location before checking ladder and snake;
-  let previousPlayer = "player1"; // Weiguang: Added new var to hold previous player, for indicator feature;
+  //  Weiguang comment out, no need it;
+  // let previousPlayer = "player1"; // Weiguang: Added new var to hold previous player, for indicator feature;
   let stepSound = new Audio("./audio/move-self.mp3"); // Add step sound file
   let stairSound = new Audio("./audio/stairSound1.mp3");
   let snakeSound = new Audio("./audio/snakeSound3.wav");
@@ -36,38 +39,55 @@ window.onload = function () {
       isRolling = false;
     }, 1500);
   });
+  // define start player, can be assigned by sperate function in the future
+  let startPlayer = "player1";
+  switch (startPlayer) {
+    case "player1":
+      moves = 0;
+      break;
+    case "player2":
+      moves = 1;
+      break;
+    case "player3":
+      moves = 2;
+      break;
+    case "player4":
+      moves = 3;
+      break;
+  }
+  $(`#${startPlayer} .indicator`).css("visibility", "visible");
+  messageBox.textContent = `${startPlayer} starts first!`;
+  //************** */
 
   const rollDice = () => {
-
     moves += 1;
     console.log(moves);
     var randomNumber = Math.trunc(Math.random() * 6 + 1);
     var cubeElement = document.getElementById("cube");
     // Indicate the player's turn
 
-    $(`#${previousPlayer}indicator`).css("visibility", "hidden");
-    moves % 2 === 1
-      ? $(`#player1indicator`).css("visibility", "visible")
-      : $(`#player2indicator`).css("visibility", "visible");
+    // Weiguang comment out:
+    // $(`#${previousPlayer}indicator`).css("visibility", "hidden");
+    // moves % 2 === 1
+    //   ? $(`#player1indicator`).css("visibility", "visible")
+    //   : $(`#player2indicator`).css("visibility", "visible");
 
+    // Player panel indicator
     if (moves % 2 === 1) {
       document.getElementById("img_player2").classList.remove("red_color");
 
       document.getElementById("img_player1").classList.remove("white_color");
       document.getElementById("img_player1").classList.add("red_color");
-    }
-    else {
+    } else {
       document.getElementById("img_player1").classList.remove("red_color");
 
       document.getElementById("img_player2").classList.remove("white_color");
       document.getElementById("img_player2").classList.add("red_color");
     }
 
-
     /*  let img_player=`img_${player}`;
       document.getElementById(`${img_player}`).classList.toggle('red_color');
 */
-
 
     // console.dir(cubeElement);
     switch (randomNumber) {
@@ -127,8 +147,31 @@ window.onload = function () {
       };
       // Player moves
       const playerMoves = (player) => {
-        let message = `${player}'s turn`;
-        document.getElementById("movingmessage").textContent = message;
+        // Assign values:
+        // previousPlayer = player; //Assign the player to be previous owner for next click;
+        tempNewLocation = randomNumber + locations[`${player}`];
+        playerNewLocation = snakeOrLadder(tempNewLocation); // check snake or ladders and update the new location accordingly
+
+        // define next player in situation of 2 players
+        let nextPlayer = `${player === "player1" ? "player2" : "player1"}`;
+
+        // 2 or more than 2 users: Testing stage
+
+        // switch (player) {
+        //   case "player1":
+        //     nextPlayer = "player2";
+        //     break;
+        //   case "player2":
+        //     nextPlayer = "player3";
+        //     break;
+        //   case "player3":
+        //     nextPlayer = "player4";
+        //     break;
+        //   case "player4":
+        //     nextPlayer = "player1";
+        //     break;
+        // }
+
         // let player move step by step using 2 different method:
         // Function: Move forward step by step with step sound:
         const sleepNow = (delay) =>
@@ -159,10 +202,26 @@ window.onload = function () {
         //     setTimeout(() => moveWithSound(), 500 * i);
         //   }
         // };
-        // Assign values:
-        previousPlayer = player; //Assign the player to be previous owner for next click;
-        tempNewLocation = randomNumber + locations[`${player}`];
-        playerNewLocation = snakeOrLadder(tempNewLocation); // check snake or ladders and update the new location accordingly
+
+        // Indicate the player's turn
+        const indicatorChange = () => {
+          $(`#${player} .indicator`).css("visibility", "hidden");
+          setTimeout(() => {
+            $(`#${nextPlayer} .indicator`).css("visibility", "visible");
+          }, 300);
+
+          messageBox.textContent = `${nextPlayer}'s turn`;
+          console.log(player);
+          console.log(nextPlayer);
+        };
+
+        // Activate firework effect:
+        const firework = () => {
+          document.getElementById("firework1").classList.toggle("firework");
+          document.getElementById("firework2").classList.toggle("firework");
+          document.getElementById("firework3").classList.toggle("firework");
+        };
+
         // Weiguang commented out:
         // Displaying detailed message:
         // playerNewLocation === tempNewLocation
@@ -197,18 +256,22 @@ window.onload = function () {
             .catch((err) => {
               throw "Error in if condition1";
             });
-          console.log(player, locations[`${player}`]);
+          setTimeout(() => {
+            indicatorChange();
+          }, randomNumber * 550);
         } else if (playerNewLocation === 25) {
           moveSelfForward(randomNumber)
             .then(() => {
               document.getElementById(
                 "movingmessage"
               ).textContent = `${player} Won! Click button to play again!`;
+              firework();
               buttonElement.innerText = "Play again";
               // reload page in 1s after clicking the the button;
               buttonElement.addEventListener("click", function () {
                 setTimeout(function () {
                   window.location.reload();
+                  firework();
                 }, 1000); // perhaps change to 1500 to match others?
               });
             })
@@ -239,7 +302,9 @@ window.onload = function () {
             .catch((err) => {
               throw "Error calculating location";
             });
-
+          setTimeout(() => {
+            indicatorChange();
+          }, randomNumber * 550);
           // Weiguang comment out: // Displaying detailed message:
           // playerNewLocation === tempNewLocation
           //   ? (document.getElementById(
@@ -255,7 +320,47 @@ window.onload = function () {
         }
       };
 
-      moves % 2 === 1 ? playerMoves("player1") : playerMoves("player2");
+      // moves % 2 === 1 ? playerMoves("player1") : playerMoves("player2");
+      switch (playerNum) {
+        case 2:
+          switch (moves % 2) {
+            case 1:
+              playerMoves("player1");
+              break;
+            case 0:
+              playerMoves("player2");
+              break;
+          }
+          break;
+        case 3:
+          switch (moves % 3) {
+            case 1:
+              playerMoves("player1");
+              break;
+            case 2:
+              playerMoves("player2");
+              break;
+            case 0:
+              playerMoves("player3");
+              break;
+          }
+          break;
+        case 4:
+          switch (moves % 4) {
+            case 1:
+              playerMoves("player1");
+              break;
+            case 2:
+              playerMoves("player2");
+              break;
+            case 3:
+              playerMoves("player3");
+              break;
+            case 4:
+              playerMoves("player4");
+              break;
+          }
+      }
     }, 1500);
   };
 

@@ -139,7 +139,6 @@ body {
   width: 50px;
   height: 50px;
   z-index: 2;
-  
 }
 /* Weiguang: change id #img_avatar_body2 to player2 */
 #player2 {
@@ -183,21 +182,18 @@ body {
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  
 }
 .person_panel #img_player2 {
   border-radius: 50%;
   width: 100px;
   height: 100px;
- 
 }
-.white_color{
-  border:5px solid white;
+.white_color {
+  border: 5px solid white;
 }
-.red_color{
-  border:5px solid red;
+.red_color {
+  border: 5px solid red;
 }
-
 
 .dice_panel {
   width: 250px;
@@ -264,8 +260,8 @@ body {
 }
 
 /* indicators */
-
-#player1indicator {
+/* Weiguang comment out, using nested selector to choose indicator */
+/* #player1indicator {
   width: 40px;
   height: 40px;
   position: absolute;
@@ -282,8 +278,17 @@ body {
   left: 5px;
   overflow: visible;
   visibility: hidden;
-}
+} */
 
+.indicator {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 55px;
+  left: 5px;
+  overflow: visible;
+  visibility: hidden;
+}
 /* responsive */
 @media only screen and (max-width: 1150px) {
   /* .center(
