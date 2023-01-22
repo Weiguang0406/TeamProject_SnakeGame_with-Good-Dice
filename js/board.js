@@ -59,7 +59,9 @@ window.onload = function () {
   // slowly show on screen message(the message was hidden as default)
   setTimeout(() => {
     startingMessageBox.textContent = `${startPlayer} starts first!`;
+    startingMessageBox.style.background = "white";
     startingMessageBox.classList.add("showMessage");
+
   }, 800);
   // remove on screen message when mouse click any where of the screen; the event only execute once;
   function removeMessage() {

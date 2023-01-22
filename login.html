@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Snakes & Ladders</title>
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" href="css/board.css"> <!-- CSS reset -->
+
+    <link rel="stylesheet" href="css/login.css"> <!-- CSS reset -->
+</head>
+
+<body>
+    <form action="index_snakeboard.html" method="get" id="test_form">
+        <div class="selection">
+            <p class="welcome">Welcome!</p>
+            <div class="fieldset_border">
+                <fieldset class="inputname">
+                    <legend class="title_input_name">Input you nickname</legend>
+                    <div class="choose_avatar">
+                        <div class="player1">
+                            <label>
+                                <!--    <input type="radio" name="choose-avatar" class="choose-avatar" value="1" />
+                                --> <img src="imgs/avatar1.png">
+
+                            </label>
+                            <label for="player1_name" class="player1_name_label">
+                                <input type="text" id="player1_name" class="player_name" name="player1_name"
+                                    placeholder="player1" value="player1">
+                            </label>
+
+
+                        </div>
+                        <div class="player2">
+                            <label>
+                                <!--<input type="radio" name="choose-avatar" class="choose-avatar" value="2" />
+                                
+                                --> <img src="imgs/avatar2.png">
+                            </label>
+
+                            <label for="player2_name" class="player1_name_label">
+                                <input type="text" id="player2_name" class="player_name" name="player2_name"
+                                    placeholder="player2" value="player2">
+                            </label>
+
+
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+            <div class="fieldset_border">
+                <fieldset class="firstplay">
+                    <legend class="title_who_first_roll">Who rolls first?</legend>
+                    <div class="choose_who_play_first">
+                        <label>
+                            <input id="who_first" type="radio" name="who_first" class="who_first" value="player1"
+                                checked />
+                            <span>player1</span>
+                        </label>
+                        <label>
+                            <input id="who_first" type="radio" name="who_first" class="who_first" value="player2" />
+                            <span>player2</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="go">
+                <input id="go_button" class="go_button" type="submit" value="Let's Roll">
+            </div>
+        </div>
+
+    </form>
+    <!--Scripts-->
+    <script src="js/login.js" type="text/javascript"></script>
+</body>
+
+</html>
