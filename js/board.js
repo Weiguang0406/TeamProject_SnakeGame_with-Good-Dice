@@ -13,6 +13,9 @@ window.onload = function () {
   player1_name = parameterlist[0].split("=")[1];
   player2_name = parameterlist[1].split("=")[1];
   who_first_player = parameterlist[2].split("=")[1];
+  if (!player1_name === true) { player1_name = "player1" }
+  if (!player2_name === true) { player2_name = "player2" }
+
   alert("player1_name=" + player1_name);
   alert("player2_name=" + player2_name);
   alert("who_first_player=" + who_first_player);
