@@ -362,6 +362,11 @@ footer span {
   font-weight: 300;
 }
 
+#img_avatar_player1 {
+  border-radius: 50%;
+
+}
+
 /* responsive */
 @media only screen and (max-width: 1150px) {
 

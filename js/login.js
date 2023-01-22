@@ -1,5 +1,29 @@
 window.onload = function () {
 
+
+    /*<div class="choose_avatar">
+                        <div class="player1">
+                            <label>
+                                <img src="imgs/avatar1.png"></img>
+*/
+    let avatar_img1 = document.getElementById("img_avatar_player1");
+    var totalnum = 7;
+    var num = 1;
+    avatar_img1.addEventListener("click", function () {
+        num = num % totalnum + 1;
+        avatar_img1.src = `imgs/avatar${num}.png`
+
+    });
+    num = 1;
+    let avatar_img2 = document.getElementById("img_avatar_player2");
+    avatar_img2.addEventListener("click", function () {
+        num = num % totalnum + 1;
+        avatar_img2.src = `imgs/avatar${num}.png`
+
+    });
+
+
+
     let buttonElement = document.querySelector(".go_button");
     buttonElement.addEventListener("click", function (e) {
         e.preventDefault();
