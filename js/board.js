@@ -16,9 +16,9 @@ window.onload = function () {
   if (!player1_name === true) { player1_name = "player1" }
   if (!player2_name === true) { player2_name = "player2" }
 
-  alert("player1_name=" + player1_name);
-  alert("player2_name=" + player2_name);
-  alert("who_first_player=" + who_first_player);
+  //alert("player1_name=" + player1_name);
+  //alert("player2_name=" + player2_name);
+  //alert("who_first_player=" + who_first_player);
 
   $(".smallbox:even").css("background", "#2C3D50");
   $(".smallbox:odd").css("background", "#CFA175");

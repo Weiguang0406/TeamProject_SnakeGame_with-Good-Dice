@@ -349,7 +349,7 @@ body {
   cursor: pointer;
 }
 
-footer {
+.footer2 {
   font-size: 27px;
   color: rgb(73, 65, 65);
   font-weight: 500;
@@ -357,7 +357,7 @@ footer {
   ;*/
 }
 
-footer span {
+.footer2 span {
   font-size: 25px;
   font-weight: 300;
 }
@@ -366,6 +366,74 @@ footer span {
   border-radius: 50%;
 
 }
+
+footer {
+  width: 800px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.weather {
+  width: 700px;
+  height: 50px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.weather .temperature_value {
+
+  font-size: 50px;
+  font-weight: 400;
+}
+
+.weather .c_value {
+
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.weather .c_value sup {
+
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.temperature .f_value {
+
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.temperature .seperator {
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+
+.temperature .f_value sup {
+
+  font-size: 10px;
+  font-weight: 400;
+}
+
+
+.temperature {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.weather_right {
+  margin-left: 15px;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 
 /* responsive */
 @media only screen and (max-width: 1150px) {

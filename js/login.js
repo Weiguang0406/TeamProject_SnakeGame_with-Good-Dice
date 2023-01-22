@@ -32,10 +32,12 @@ window.onload = function () {
         let input2 = document.getElementById("player2_name").value;
         let player1_name = input1;
         let player2_name = input2;
-        who_first = document.querySelector(".who_first").value;
 
+        who_first = document.querySelector(".who_first").value;
+        //*     input1.value = "kkkkk";
         /** needed to be changed in index_snakeboard.html */
         formElement = document.getElementById("test_form");
+        
         formElement.submit();
     })
 
