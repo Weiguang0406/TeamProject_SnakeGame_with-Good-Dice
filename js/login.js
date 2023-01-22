@@ -33,14 +33,7 @@ window.onload = function () {
         let player1_name = input1;
         let player2_name = input2;
         who_first = document.querySelector(".who_first").value;
-        if (!player1_name.value === true) {
 
-            player1_name.value = "player1"
-        }
-        if (!player2_name.value === true) {
-
-            player2_name.value = "player2"
-        }
         /** needed to be changed in index_snakeboard.html */
         formElement = document.getElementById("test_form");
         formElement.submit();
