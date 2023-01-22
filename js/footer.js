@@ -13,6 +13,7 @@ for (let i = 0; i < content.length; i++) {
 footerElement = document.querySelectorAll("footer span");
 for (i = 0; i < footerElement.length; i++) {
     footerElement[i].style.color = getRGBString();
+
 }
 
 

@@ -349,6 +349,18 @@ body {
   cursor: pointer;
 }
 
+footer {
+  font-size: 27px;
+  color: rgb(73, 65, 65);
+  font-weight: 500;
+  /*color: #F51B27;
+  ;*/
+}
+
+footer span {
+  font-size: 25px;
+  font-weight: 300;
+}
 
 /* responsive */
 @media only screen and (max-width: 1150px) {
