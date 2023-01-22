@@ -7,6 +7,16 @@ $(".smallbox:odd").css("background","#2C3D50");
 // const { nodeName } = require("jquery");
 
 window.onload = function () {
+  let locationaddress = window.location.href;
+  let parameterlist = locationaddress.split("?")[1].split("&");
+  //alert(parameterlist);
+  player1_name = parameterlist[0].split("=")[1];
+  player2_name = parameterlist[1].split("=")[1];
+  who_first_player = parameterlist[2].split("=")[1];
+  alert("player1_name=" + player1_name);
+  alert("player2_name=" + player2_name);
+  alert("who_first_player=" + who_first_player);
+
   $(".smallbox:even").css("background", "#2C3D50");
   $(".smallbox:odd").css("background", "#CFA175");
   // Weiguang: setup player using jquery; should be ale to be achieved using js as well.
