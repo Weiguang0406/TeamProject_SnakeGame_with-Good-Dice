@@ -84,9 +84,9 @@ window.onload = function () {
   //alert(filename3);
 
   filename1_num = "imgs/avatar_body" + `${avatarbody_img_filename_num1}`;
-  alert(filename1_num);
+  //alert(filename1_num);
   filename2_num = "imgs/avatar_body" + `${avatarbody_img_filename_num2}`;
-  alert(filename1_num);
+  //alert(filename1_num);
   document.getElementById("img_player1").src = `imgs${filename1}`;
 
   document.getElementById("img_player2").src = `imgs${filename2}`;
@@ -128,9 +128,8 @@ window.onload = function () {
   }
   // slowly show on screen message(the message was hidden as default)
   setTimeout(() => {
-    startingMessageBox.textContent = `${
-      playerNames[`${startPlayer}`]
-    } starts first!`;
+    startingMessageBox.textContent = `${playerNames[`${startPlayer}`]
+      } starts first!`;
     // startingMessageBox.style.background = "white";
     startingMessageBox.classList.add("showMessage");
   }, 800);
@@ -358,9 +357,8 @@ window.onload = function () {
         } else if (playerNewLocation === 25) {
           moveSelfForward(randomNumber)
             .then(() => {
-              document.getElementById("movingmessage").textContent = `${
-                playerNames[`${player}`]
-              } Won! Click button to play again!`;
+              document.getElementById("movingmessage").textContent = `${playerNames[`${player}`]
+                } Won! Click button to play again!`;
               winningMusic.play();
               fireworkSound.play();
               firework();

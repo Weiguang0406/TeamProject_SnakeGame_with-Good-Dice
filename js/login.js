@@ -57,7 +57,7 @@ window.onload = function () {
 
 
 
-    alert("filename=" + avatarbody_name_num1);
+    //alert("filename=" + avatarbody_name_num1);
 
 
     //*     input1.value = "kkkkk";
