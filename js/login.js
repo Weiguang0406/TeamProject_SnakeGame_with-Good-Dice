@@ -48,13 +48,16 @@ window.onload = function () {
     localStorage.setItem("avatar_img1", avatar_img1.src);
     localStorage.setItem("avatar_img2", avatar_img2.src);
     //  alert(avatar_img1.src.substr(33, 5));
-    localStorage.setItem("avatar_img1_num", avatar_img1.src.substr(33, 5));
-    localStorage.setItem("avatar_img2_num", avatar_img2.src.substr(33, 5));
+    var avatarbody_name_num1 = avatar_img1.src.substr(33, 5);
+    var avatarbody_name_num2 = avatar_img2.src.substr(33, 5);
+
+    localStorage.setItem("avatar_img1_num", avatarbody_name_num1);
+    localStorage.setItem("avatar_img2_num", avatarbody_name_num2);
 
 
 
 
-    alert("filename=" + avatar_img1.src);
+    alert("filename=" + avatarbody_name_num1);
 
 
     //*     input1.value = "kkkkk";
