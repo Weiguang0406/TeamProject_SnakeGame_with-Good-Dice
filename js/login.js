@@ -6,6 +6,7 @@ window.onload = function () {
 */
   let avatar_img1 = document.getElementById("img_avatar_player1");
   let avatar_img2 = document.getElementById("img_avatar_player2");
+
   var totalnum = 7;
   var num = 1;
 
@@ -39,8 +40,22 @@ window.onload = function () {
         localStorage.setItem("starter", who_first);
       }
     }
+
+
     localStorage.setItem("player1Name", input1);
     localStorage.setItem("player2Name", input2);
+    //get avatar filename 
+    localStorage.setItem("avatar_img1", avatar_img1.src);
+    localStorage.setItem("avatar_img2", avatar_img2.src);
+    //  alert(avatar_img1.src.substr(33, 5));
+    localStorage.setItem("avatar_img1_num", avatar_img1.src.substr(33, 5));
+    localStorage.setItem("avatar_img2_num", avatar_img2.src.substr(33, 5));
+
+
+
+
+    alert("filename=" + avatar_img1.src);
+
 
     //*     input1.value = "kkkkk";
     /** needed to be changed in index_snakeboard.html */
