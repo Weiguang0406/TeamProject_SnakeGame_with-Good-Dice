@@ -4,31 +4,39 @@
 }
 
 body {
-  padding-top: 20px;
+  /* padding-top: 20px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #d9dadc;
   /*background-image: url(../imgs/pageBackground2.png); */
-  background-size: cover;
+  /* background-size: cover; */
 }
 
-.header {
-  margin-top: 30px;
+main {
   width: 80%;
-
-  height: 50px;
-  font-size: 30px;
-  text-align: center;
+  margin: auto;
+  /* display: flex; */
+  align-items: center;
+}
+.header {
+  margin: auto;
+  width: 60%;
+  height: auto;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  /* font-size: 30px; */
+  display: flex;
+  align-items: center;
   color: #2c3d50;
 }
 
 .center {
-  /* width: 80%; */
-  width: auto;
+  width: 950px;
+  /* width: auto; */
   /* align-self: end; */
   margin: auto;
-  align-items: center;
+  /* align-items: center; */
   /* display: flex; */
   /* flex-direction: column; */
   /* justify-content: space-evenly; */
@@ -285,7 +293,8 @@ body {
 }
 
 #gameIcon {
-  width: 400px;
+  margin: auto;
+  width: 30%;
   height: auto;
 }
 
@@ -335,7 +344,7 @@ body {
   z-index: 100;
   position: absolute;
   top: 200px;
-  left: 250px;
+  left: 200px;
   background-color: rgba(5, 5, 6, 0.3);
 }
 
@@ -364,6 +373,8 @@ body {
   font-weight: 500;
   /*color: #F51B27;
   ;*/
+  /* display: flex; */
+  margin: auto;
 }
 
 .footer2 span {
@@ -380,13 +391,15 @@ footer {
   height: 100px;
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
 
 .weather {
-  width: 700px;
+  width: 45%;
   height: 50px;
 
   display: flex;
+  margin: auto;
   flex-direction: row;
 }
 
@@ -434,14 +447,47 @@ footer {
 }
 
 /* responsive */
+@media only screen and (min-width: 1511px) and (max-width: 1649px) {
+  /* .center {
+    width: 70%;
+  } */
+  main {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1151px) and (max-width: 1510px) {
+  /* .center {
+    width: 90%;
+  } */
+  main {
+    width: 90%;
+  }
+}
+
+/* @media only screen and (min-width: 1151px) and (max-width: 1219px) {
+  .center {
+    width: 100%;
+  }
+  main {
+    width: 90%;
+  }
+} */
 @media only screen and (max-width: 1150px) {
   /* .center(
         width: au;
     )  */
-  .gridboard {
+  #gameGround {
     float: none;
   }
-
+  .center {
+    width: 650px;
+    margin: auto;
+    align-items: center;
+  }
+  main {
+    width: 95%;
+  }
   .control_panel {
     width: 600px;
     height: auto;
