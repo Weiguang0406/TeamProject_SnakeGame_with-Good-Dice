@@ -7,14 +7,20 @@ $(".smallbox:odd").css("background","#2C3D50");
 // const { nodeName } = require("jquery");
 
 window.onload = function () {
-  let locationaddress = window.location.href;
-  let parameterlist = locationaddress.split("?")[1].split("&");
-  //alert(parameterlist);
-  player1_name = parameterlist[0].split("=")[1];
-  player2_name = parameterlist[1].split("=")[1];
-  who_first_player = parameterlist[2].split("=")[1];
-  if (!player1_name === true) { player1_name = "player1" }
-  if (!player2_name === true) { player2_name = "player2" }
+  // let locationaddress = window.location.href;
+  // console.log(locationaddress);
+  // let parameterlist = locationaddress.split("?")[1].split("&");
+  // console.log(parameterlist);
+  // //alert(parameterlist);
+  // player1_name = parameterlist[0].split("=")[1];
+  // player2_name = parameterlist[1].split("=")[1];
+  // who_first_player = parameterlist[2].split("=")[1];
+  // if (!player1_name === true) {
+  //   player1_name = "player1";
+  // }
+  // if (!player2_name === true) {
+  //   player2_name = "player2";
+  // }
 
   //alert("player1_name=" + player1_name);
   //alert("player2_name=" + player2_name);
@@ -32,17 +38,39 @@ window.onload = function () {
   let playerNum = 2; // set default player number;
   let messageBox = document.getElementById("movingmessage");
   let startingMessageBox = document.getElementById("startingMessage"); // For on screen message
+  const playerNames = { player1: "", player2: "", player3: "", player4: "" }; // Create object with empty value for holding palyer names;
   const locations = { player1: 0, player2: 0 }; // players start from location 0;
   let playerNewLocation;
   let tempNewLocation; // Added new var to hold the temporary location before checking ladder and snake;
   //  Weiguang comment out, no need it;
   // let previousPlayer = "player1"; // Weiguang: Added new var to hold previous player, for indicator feature;
-  let stepSound = new Audio("./audio/move-self.mp3"); // Add step sound file
-  let stairSound = new Audio("./audio/stairSound1.mp3");
-  let snakeSound = new Audio("./audio/snakeSound3.wav");
-  let isRolling = false; // Rob: added to prevent double/triple rolls for same player
+  const stepSound = new Audio("./audio/move-self.mp3"); // Add step sound file
+  const stairSound = new Audio("./audio/stairSound1.mp3");
+  const snakeSound = new Audio("./audio/snakeSound3.wav");
+  const gameMusic = new Audio("./audio/gamemusic.mp3");
+  const winningMusic = new Audio("./audio/winningsound.mp3");
+  const fireworkSound = new Audio("./audio/fireworks.mp3");
+  var isRolling = false; // Rob: added to prevent double/triple rolls for same player
   // rob: locks out user input with disabled attribute for as long as roll animation preventing multiple turns
   var buttonElement = document.getElementById("rolldice_button");
+
+  // Get value from login page(localStorage) and pass to the game;
+  // If no input then automatically take player1 or player2 as name;
+  localStorage.getItem("player1Name") == ""
+    ? (playerNames.player1 = "player1")
+    : (playerNames.player1 = localStorage.getItem("player1Name"));
+
+  localStorage.getItem("player2Name") == ""
+    ? (playerNames.player2 = "player2")
+    : (playerNames.player2 = localStorage.getItem("player2Name"));
+
+  // playerNames.player1 = localStorage.getItem("player1Name");
+  // playerNames.player2 = localStorage.getItem("player2Name");
+
+  let startPlayer = localStorage.getItem("starter");
+  console.log(startPlayer);
+  console.log(playerNames);
+
   buttonElement.addEventListener("click", function () {
     if (isRolling) return;
     isRolling = true;
@@ -54,7 +82,6 @@ window.onload = function () {
     }, 1500);
   });
   // define start player, can be assigned by sperate function in the future
-  let startPlayer = "player1";
   switch (startPlayer) {
     case "player1":
       moves = 0;
@@ -71,21 +98,28 @@ window.onload = function () {
   }
   // slowly show on screen message(the message was hidden as default)
   setTimeout(() => {
-    startingMessageBox.textContent = `${startPlayer} starts first!`;
-    startingMessageBox.style.background = "white";
+    startingMessageBox.textContent = `${
+      playerNames[`${startPlayer}`]
+    } starts first!`;
+    // startingMessageBox.style.background = "white";
     startingMessageBox.classList.add("showMessage");
-
   }, 800);
   // remove on screen message when mouse click any where of the screen; the event only execute once;
   function removeMessage() {
     $(`#startingMessage`).css("transform", "scale(0)");
     setTimeout(() => {
-      messageBox.textContent = `${startPlayer} roll dice`;
+      messageBox.textContent = `${playerNames[`${startPlayer}`]} roll dice`;
       $(`#${startPlayer} .indicator`).css("visibility", "visible");
+      document
+        .getElementById(`img_${startPlayer}`)
+        .classList.remove("white_color");
+      document.getElementById(`img_${startPlayer}`).classList.add("red_color");
     }, 1500);
   }
   document.addEventListener("click", removeMessage, { once: true });
   //************** */
+
+  // Get input from login page:
 
   const rollDice = () => {
     moves += 1;
@@ -101,17 +135,17 @@ window.onload = function () {
     //   : $(`#player2indicator`).css("visibility", "visible");
 
     // Player panel indicator
-    if (moves % 2 === 1) {
-      document.getElementById("img_player2").classList.remove("red_color");
+    // if (moves % 2 === 1) {
+    //   document.getElementById("img_player2").classList.remove("red_color");
 
-      document.getElementById("img_player1").classList.remove("white_color");
-      document.getElementById("img_player1").classList.add("red_color");
-    } else {
-      document.getElementById("img_player1").classList.remove("red_color");
+    //   document.getElementById("img_player1").classList.remove("white_color");
+    //   document.getElementById("img_player1").classList.add("red_color");
+    // } else {
+    //   document.getElementById("img_player1").classList.remove("red_color");
 
-      document.getElementById("img_player2").classList.remove("white_color");
-      document.getElementById("img_player2").classList.add("red_color");
-    }
+    //   document.getElementById("img_player2").classList.remove("white_color");
+    //   document.getElementById("img_player2").classList.add("red_color");
+    // }
 
     /*  let img_player=`img_${player}`;
       document.getElementById(`${img_player}`).classList.toggle('red_color');
@@ -236,11 +270,15 @@ window.onload = function () {
           $(`#${player} .indicator`).css("visibility", "hidden");
           setTimeout(() => {
             $(`#${nextPlayer} .indicator`).css("visibility", "visible");
-          }, 300);
+          }, 500);
 
-          messageBox.textContent = `${nextPlayer}'s turn`;
-          console.log(player);
-          console.log(nextPlayer);
+          messageBox.textContent = `${playerNames[`${nextPlayer}`]}'s turn`;
+          document
+            .getElementById(`img_${player}`)
+            .classList.remove("red_color");
+          document
+            .getElementById(`img_${nextPlayer}`)
+            .classList.add("red_color");
         };
 
         // Activate firework effect:
@@ -290,9 +328,11 @@ window.onload = function () {
         } else if (playerNewLocation === 25) {
           moveSelfForward(randomNumber)
             .then(() => {
-              document.getElementById(
-                "movingmessage"
-              ).textContent = `${player} Won! Click button to play again!`;
+              document.getElementById("movingmessage").textContent = `${
+                playerNames[`${player}`]
+              } Won! Click button to play again!`;
+              winningMusic.play();
+              fireworkSound.play();
               firework();
               buttonElement.innerText = "Play again";
               // reload page in 1s after clicking the the button;

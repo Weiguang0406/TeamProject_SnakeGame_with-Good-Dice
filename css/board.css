@@ -56,7 +56,7 @@ body {
   height: 500px;
 }
 
-.gridboard>.smallbox {
+.gridboard > .smallbox {
   /* background-color: #b10dc9; */
   width: 100px;
   height: 100px;
@@ -74,7 +74,7 @@ body {
 }
 
 /* below modified by danli haung */
-.gridboard>div {
+.gridboard > div {
   position: relative;
 }
 
@@ -169,9 +169,12 @@ body {
 }
 
 #movingmessage {
-  margin-top: 10px;
+  position: absolute;
+  width: 250px;
+  top: 120px;
   text-align: center;
-  font-size: bold;
+  font-size: 30px;
+  font-weight: bolder;
   color: black;
   font-family: cursive, "Courier New", Courier, monospace;
 }
@@ -187,6 +190,8 @@ body {
 }
 
 .person_panel {
+  text-align: center;
+  position: relative;
   width: 250px;
   height: 250px;
   border: 1px grey solid;
@@ -211,6 +216,8 @@ body {
 
 .red_color {
   border: 5px solid red;
+  transition: border 0.4s;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.16), 0 4px 6px rgba(0, 0, 0, 0.45);
 }
 
 .dice_panel {
@@ -268,11 +275,13 @@ body {
 
 /* Add game background */
 #gameGround {
-  height: auto;
+  width: 650px;
+  height: 530px;
   float: left;
   background-image: url("../imgs/gameBackground1.jpg");
   box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.16), 0 4px 6px rgba(0, 0, 0, 0.45);
   border-radius: 10px;
+  position: relative; /* set postion as a reference for the starting message box postion;  */
 }
 
 #gameIcon {
@@ -325,8 +334,8 @@ body {
   color: white;
   z-index: 100;
   position: absolute;
-  top: 350px;
-  left: 450px;
+  top: 200px;
+  left: 250px;
   background-color: rgba(5, 5, 6, 0.3);
 }
 
@@ -364,7 +373,6 @@ body {
 
 #img_avatar_player1 {
   border-radius: 50%;
-
 }
 
 footer {
@@ -372,7 +380,6 @@ footer {
   height: 100px;
   display: flex;
   flex-direction: column;
-
 }
 
 .weather {
@@ -384,25 +391,21 @@ footer {
 }
 
 .weather .temperature_value {
-
   font-size: 50px;
   font-weight: 400;
 }
 
 .weather .c_value {
-
   font-size: 25px;
   font-weight: 400;
 }
 
 .weather .c_value sup {
-
   font-size: 10px;
   font-weight: 400;
 }
 
 .temperature .f_value {
-
   font-size: 25px;
   font-weight: 400;
 }
@@ -414,19 +417,15 @@ footer {
   font-weight: 800;
 }
 
-
 .temperature .f_value sup {
-
   font-size: 10px;
   font-weight: 400;
 }
-
 
 .temperature {
   display: flex;
   flex-direction: row;
 }
-
 
 .weather_right {
   margin-left: 15px;
@@ -434,10 +433,8 @@ footer {
   margin-top: 4px;
 }
 
-
 /* responsive */
 @media only screen and (max-width: 1150px) {
-
   /* .center(
         width: au;
     )  */
