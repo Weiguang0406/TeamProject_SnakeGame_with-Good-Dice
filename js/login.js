@@ -9,8 +9,8 @@ window.onload = function () {
 
   var totalnum = 7;
   var num = 1;
-  var avatarPlayer1 = "imgs/avatar1.png";
-  var avatarPlayer2 = "imgs/avatar2.png";
+  var avatarPlayer1 = "avatar1.png";
+  var avatarPlayer2 = "avatar2.png";
 
   let buttonElement = document.querySelector(".go_button");
   avatar_img1.addEventListener("click", function () {
