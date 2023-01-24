@@ -50,13 +50,16 @@ window.onload = function () {
   let playerNewLocation;
   let tempNewLocation; // Added new var to hold the temporary location before checking ladder and snake;
   //  Weiguang comment out, no need it;
-  // let previousPlayer = "player1"; // Weiguang: Added new var to hold previous player, for indicator feature;
+
   const stepSound = new Audio("./audio/move-self.mp3"); // Add step sound file
   const stairSound = new Audio("./audio/stairSound1.mp3");
   const snakeSound = new Audio("./audio/snakeSound3.wav");
   const gameMusic = new Audio("./audio/gamemusic.mp3");
   const winningMusic = new Audio("./audio/winningsound.mp3");
   const fireworkSound = new Audio("./audio/fireworks.mp3");
+  const soundBtn = document.getElementById("sound");
+  console.log(soundBtn);
+  var isPaused = false;
   var isRolling = false; // Rob: added to prevent double/triple rolls for same player
   // rob: locks out user input with disabled attribute for as long as roll animation preventing multiple turns
   var buttonElement = document.getElementById("rolldice_button");
@@ -75,29 +78,6 @@ window.onload = function () {
   playerAvatarsSrc.player1 = localStorage.getItem("avatarPlayer1");
   playerAvatarsSrc.player2 = localStorage.getItem("avatarPlayer2");
   console.log(playerAvatarsSrc.player1);
-  // avatar_img_filename1 = localStorage.getItem("avatar_img1");
-  // avatar_img_filename2 = localStorage.getItem("avatar_img2");
-  // avatar_img_num1 = localStorage.getItem("avatar_img1_num");
-  // avatar_img_num2 = localStorage.getItem("avatar_img2_num");
-  // avatarbody_img_filename_num1 = localStorage.getItem("avatar_img1_num");
-  // avatarbody_img_filename_num2 = localStorage.getItem("avatar_img2_num");
-
-  // console.log(avatar_img_filename1);
-  // filename1 = avatar_img_filename1.split("imgs")[1];
-  // filename2 = avatar_img_filename2.split("imgs")[1];
-  //filename3 = avatar_img_filename2.split("imgs")[1].split(".")[0];
-  //alert(filename3);
-
-  // filename1_num = "imgs/avatar_body" + `${avatarbody_img_filename_num1}`;
-  // //alert(filename1_num);
-  // filename2_num = "imgs/avatar_body" + `${avatarbody_img_filename_num2}`;
-  //alert(filename1_num);
-  // document.getElementById("img_player1").src = `imgs${filename1}`;
-
-  // document.getElementById("img_player2").src = `imgs${filename2}`;
-  // document.getElementById("player1_body_img").src = `${filename1_num}`;
-  // // alert(document.getElementById("player1_body_img").src);
-  // document.getElementById("player2_body_img").src = `${filename2_num}`;
 
   document.getElementById(
     "img_player1"
@@ -170,8 +150,33 @@ window.onload = function () {
   document.addEventListener("click", removeMessage, { once: true });
   //************** */
 
-  // Get input from login page:
+  // Background sound control:
 
+  gameMusic.addEventListener(
+    "load",
+    function () {
+      gameMusic.play();
+    },
+    true
+  );
+  gameMusic.autoplay = true; //autoplay
+  const toggleGameMusic = () => {
+    isPaused ? (isPaused = false) : (isPaused = true);
+    console.log(isPaused);
+    if (isPaused) {
+      // gameMusic.loop = false;
+      gameMusic.pause();
+      soundBtn.src = "./imgs/soundicon_round3_mute.jpg";
+    } else {
+      gameMusic.play();
+      gameMusic.loop = true;
+      soundBtn.src = "./imgs/soundicon_round3.png";
+
+      // gameMusic.currentTime = 0;
+    }
+  };
+
+  soundBtn.addEventListener("click", toggleGameMusic);
   const rollDice = () => {
     moves += 1;
     console.log(moves);
