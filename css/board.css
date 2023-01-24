@@ -428,9 +428,21 @@ footer {
   flex-direction: row;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 .weather .temperature_value {
   font-size: 50px;
   font-weight: 400;
+  margin-left:15px;
 }
 
 .weather .c_value {
