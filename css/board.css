@@ -39,7 +39,7 @@ main {
 }
 
 .center {
-  width: 950px;
+  width: 1050px;
   /* width: auto; */
   /* align-self: end; */
   margin: auto;
@@ -289,8 +289,16 @@ main {
   float: left;
   top: 400px;
 
-  background-image: url("../imgs/startHere.png");
+  /* background-image: url("../imgs/startHere.png"); */
   background-size: cover;
+}
+
+#startHere {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: -100px;
+  top: 0;
 }
 
 /* Add game background */
@@ -322,6 +330,13 @@ main {
   height: 100%;
 }
 
+#setting {
+  float: right;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  z-index: 120;
+}
 /* indicators */
 /* Weiguang comment out, using nested selector to choose indicator */
 /* #player1indicator {
@@ -428,21 +443,10 @@ footer {
   flex-direction: row;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .weather .temperature_value {
   font-size: 50px;
   font-weight: 400;
-  margin-left:15px;
+  margin-left: 15px;
 }
 
 .weather .c_value {
@@ -530,7 +534,7 @@ footer {
     height: auto;
     float: none;
     flex-direction: row;
-    margin-top: 50px;
+    margin-top: 25px;
   }
 
   .person_panel {
