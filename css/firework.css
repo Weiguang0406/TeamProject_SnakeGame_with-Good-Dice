@@ -136,7 +136,7 @@
 
 .firework:nth-child(3) {
   --x: -30vmin;
-  --y: -50vmin;
+  --y: -45vmin;
 }
 
 .firework:nth-child(3),
