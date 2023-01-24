@@ -563,7 +563,7 @@ footer {
     float: none;
   }
   .center {
-    width: 650px;
+    width: 750px;
     margin: auto;
     align-items: center;
   }
@@ -581,5 +581,10 @@ footer {
   .person_panel {
     float: left;
     margin-right: 25px;
+  }
+  #settingAndSound {
+    top: 0px;
+    right: 0;
+    position: absolute;
   }
 }
