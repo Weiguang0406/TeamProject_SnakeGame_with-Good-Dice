@@ -38,6 +38,13 @@ window.onload = function () {
   let playerNum = 2; // set default player number;
   let messageBox = document.getElementById("movingmessage");
   let startingMessageBox = document.getElementById("startingMessage"); // For on screen message
+  const playerAvatarsSrc = {
+    player1: "",
+    player2: "",
+    player3: "",
+    player4: "",
+  }; // get object from login page;
+  console.log(playerAvatarsSrc);
   const playerNames = { player1: "", player2: "", player3: "", player4: "" }; // Create object with empty value for holding palyer names;
   const locations = { player1: 0, player2: 0 }; // players start from location 0;
   let playerNewLocation;
@@ -64,28 +71,48 @@ window.onload = function () {
     ? (playerNames.player2 = "player2")
     : (playerNames.player2 = localStorage.getItem("player2Name"));
 
-  avatar_img_filename1 = localStorage.getItem("avatar_img1");
-  avatar_img_filename2 = localStorage.getItem("avatar_img2");
-  avatar_img_num1 = localStorage.getItem("avatar_img1_num");
-  avatar_img_num2 = localStorage.getItem("avatar_img2_num");
-  avatarbody_img_filename_num1 = localStorage.getItem("avatar_img1_num");
-  avatarbody_img_filename_num2 = localStorage.getItem("avatar_img2_num");
+  // get each player's avatar in the format of avatar2.png;
+  playerAvatarsSrc.player1 = localStorage.getItem("avatarPlayer1");
+  playerAvatarsSrc.player2 = localStorage.getItem("avatarPlayer2");
+  console.log(playerAvatarsSrc.player1);
+  // avatar_img_filename1 = localStorage.getItem("avatar_img1");
+  // avatar_img_filename2 = localStorage.getItem("avatar_img2");
+  // avatar_img_num1 = localStorage.getItem("avatar_img1_num");
+  // avatar_img_num2 = localStorage.getItem("avatar_img2_num");
+  // avatarbody_img_filename_num1 = localStorage.getItem("avatar_img1_num");
+  // avatarbody_img_filename_num2 = localStorage.getItem("avatar_img2_num");
 
-  filename1 = avatar_img_filename1.split("imgs")[1];
-  filename2 = avatar_img_filename2.split("imgs")[1];
+  // console.log(avatar_img_filename1);
+  // filename1 = avatar_img_filename1.split("imgs")[1];
+  // filename2 = avatar_img_filename2.split("imgs")[1];
   //filename3 = avatar_img_filename2.split("imgs")[1].split(".")[0];
   //alert(filename3);
 
-  filename1_num = "imgs/avatar_body" + `${avatarbody_img_filename_num1}`;
+  // filename1_num = "imgs/avatar_body" + `${avatarbody_img_filename_num1}`;
+  // //alert(filename1_num);
+  // filename2_num = "imgs/avatar_body" + `${avatarbody_img_filename_num2}`;
   //alert(filename1_num);
-  filename2_num = "imgs/avatar_body" + `${avatarbody_img_filename_num2}`;
-  //alert(filename1_num);
-  document.getElementById("img_player1").src = `imgs${filename1}`;
+  // document.getElementById("img_player1").src = `imgs${filename1}`;
 
-  document.getElementById("img_player2").src = `imgs${filename2}`;
-  document.getElementById("player1_body_img").src = `${filename1_num}`;
+  // document.getElementById("img_player2").src = `imgs${filename2}`;
+  // document.getElementById("player1_body_img").src = `${filename1_num}`;
+  // // alert(document.getElementById("player1_body_img").src);
+  // document.getElementById("player2_body_img").src = `${filename2_num}`;
+
+  document.getElementById(
+    "img_player1"
+  ).src = `imgs/${playerAvatarsSrc.player1}`;
+
+  document.getElementById(
+    "img_player2"
+  ).src = `imgs/${playerAvatarsSrc.player2}`;
+  document.getElementById(
+    "player1_body_img"
+  ).src = `imgs/body_${playerAvatarsSrc.player1}`;
   // alert(document.getElementById("player1_body_img").src);
-  document.getElementById("player2_body_img").src = `${filename2_num}`;
+  document.getElementById(
+    "player2_body_img"
+  ).src = `imgs/body_${playerAvatarsSrc.player2}`;
   // alert(document.getElementById("player2body_img").src);
   // playerNames.player1 = localStorage.getItem("player1Name");
   // playerNames.player2 = localStorage.getItem("player2Name");
