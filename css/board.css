@@ -4,16 +4,11 @@
 }
 
 body {
-  /* padding-top: 20px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #d9dadc;
-
   height: 100%;
-
-  /*background-image: url(../imgs/pageBackground2.png); */
-  /* background-size: cover; */
 }
 
 main {
@@ -23,11 +18,8 @@ main {
   width: 80%;
   margin: auto;
   height: 100%;
-  /* display: flex; */
   align-items: center;
-  /* background-image: url("../imgs/grassBackground.webp"); */
   background-size: cover;
-  /* background-color: #d9dadc; */
 }
 .header {
   margin: auto;
@@ -35,7 +27,6 @@ main {
   height: auto;
   padding-top: 30px;
   padding-bottom: 10px;
-  /* font-size: 30px; */
   display: flex;
   align-items: center;
   color: #2c3d50;
@@ -45,31 +36,14 @@ main {
   padding-top: 30px;
   width: 1050px;
   height: 700px;
-  /* width: auto; */
-  /* align-self: end; */
   margin: auto;
-  /* align-items: center; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: space-evenly; */
   position: relative;
 }
 
 .gridboard {
-  /* comment by danli huang */
-  /* width: 550px; */
-  /* background-color: #f5f2f2; */
-  /* comment by danli huang */
-  /* height: 550px; */
-
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* flex-wrap: wrap;  */
-  /* position: relative; */
   float: left;
   font-size: 0px;
   margin: auto 50px auto auto;
-  /* 5 lines below added by danli huang*/
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -78,7 +52,6 @@ main {
 }
 
 .gridboard > .smallbox {
-  /* background-color: #b10dc9; */
   width: 100px;
   height: 100px;
   display: inline-block;
@@ -87,27 +60,16 @@ main {
   padding: 0px 0px 0px 0px;
   font-size: 20px;
   font-weight: bold;
-  /* added by danli huang */
   overflow: visible;
-  /* Added by Weiguang : test 3d effect box*/
   box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.16), 0 4px 6px rgba(0, 0, 0, 0.45);
   border-radius: 10px;
 }
 
-/* below modified by danli haung */
 .gridboard > div {
   position: relative;
 }
 
 #img_ladder1 {
-  /* comment by danli huang */
-  /*
-  position: relative;
-  top: -450px;
-  left: 240px;
-  width: 110px;
-  height: 110px;
-  */
   top: 35px;
   left: 35px;
   z-index: 1;
@@ -161,7 +123,6 @@ main {
   height: 50px;
 }
 
-/* Weiguang: change id #img_avatar_body1 to player1 */
 #player1 {
   top: 10px;
   left: 0px;
@@ -171,7 +132,6 @@ main {
   z-index: 2;
 }
 
-/* Weiguang: change id #img_avatar_body2 to player2 */
 #player2 {
   top: 10px;
   left: 50px;
@@ -184,7 +144,6 @@ main {
 #message {
   margin-top: 20px;
   width: 250px;
-  /* height: 100px; */
   text-align: center;
   color: black;
 }
@@ -205,12 +164,10 @@ main {
 .control_panel {
   width: 260px;
   height: 550px;
-  /* margin-left: 50px; */
   display: inline-block;
   flex-direction: column;
   justify-content: space-between;
   margin: auto;
-  /* background-color: rgb(153, 153, 153, 0.3); */
   border-radius: 10%;
 }
 
@@ -219,7 +176,6 @@ main {
   position: relative;
   width: 250px;
   height: 250px;
-  /* border: 1px grey solid; */
   border-radius: 40px;
 }
 
@@ -248,7 +204,6 @@ main {
 .dice_panel {
   width: 250px;
   height: 250px;
-  /* background-color: #3e8082; */
   border-radius: 40px;
   margin: 0 auto;
   display: flex;
@@ -289,12 +244,9 @@ main {
   color: #ffffff;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
-  /* added by danli huang */
   position: relative;
   float: left;
   top: 400px;
-
-  /* background-image: url("../imgs/startHere.png"); */
   background-size: cover;
 }
 
@@ -322,9 +274,7 @@ main {
   width: 40%;
   height: auto;
   z-index: 2;
-}
-#snakeAndladder {
-  /* background-color: #ffffff; */
+
 }
 #grassfield {
   opacity: 0.65;
@@ -338,41 +288,27 @@ main {
 #settingAndSound {
   display: flex;
   float: right;
-  /* top: 200px; */
-  /* right: 10%; */
   width: auto;
   height: auto;
-  /* background-color: #ffffff; */
-  /* z-index: 120; */
 }
 #setting {
   width: 50px;
   border-radius: 50%;
   cursor: pointer;
   outline: none;
-  /* background-color: #04AA6D; */
   border: none;
-  /* border-radius: 15px; */
   box-shadow: 0 5px rgb(164, 131, 228);
 }
-#setting:hover {
-  /* background-color: #3e8e41; */
-}
 #setting:active {
-  /* background-color: #3e8e41; */
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 #sound {
   width: 45px;
   border-radius: 50%;
-  /* padding: 15px 25px; */
-  /* font-size: 24px; */
   cursor: pointer;
   outline: none;
-  /* background-color: #04AA6D; */
   border: none;
-  /* border-radius: 15px; */
   box-shadow: 0 5px rgb(164, 131, 228);
 }
 #sound:hover {
@@ -383,26 +319,6 @@ main {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-/* indicators */
-/* Weiguang comment out, using nested selector to choose indicator */
-/* #player1indicator {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  bottom: 50px;
-  left: 5px;
-  overflow: visible;
-  visibility: hidden;
-}
-#player2indicator {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  bottom: 55px;
-  left: 5px;
-  overflow: visible;
-  visibility: hidden;
-} */
 
 .indicator {
   width: 40px;
@@ -456,9 +372,6 @@ main {
   font-size: 27px;
   color: rgb(73, 65, 65);
   font-weight: 500;
-  /*color: #F51B27;
-  ;*/
-  /* display: flex; */
   margin: auto;
 }
 
@@ -536,35 +449,20 @@ footer {
 
 /* responsive */
 @media only screen and (min-width: 1511px) and (max-width: 1649px) {
-  /* .center {
-    width: 70%;
-  } */
   main {
     width: 90%;
   }
 }
 
 @media only screen and (min-width: 1151px) and (max-width: 1510px) {
-  /* .center {
-    width: 90%;
-  } */
   main {
     width: 90%;
   }
 }
 
-/* @media only screen and (min-width: 1151px) and (max-width: 1219px) {
-  .center {
-    width: 100%;
-  }
-  main {
-    width: 90%;
-  }
-} */
+
 @media only screen and (max-width: 1150px) {
-  /* .center(
-        width: au;
-    )  */
+ 
   #gameGround {
     float: none;
   }
